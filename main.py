@@ -1,21 +1,23 @@
-from selenium import webdriver
+from selenium import webdriver 
+from selenium.webdriver.chrome.options import Options
 
-def get_driver():
-  options = webdriver.ChromeOptions()
+def get_drvier():
+  # Set options to make browsing easier
+  options = Options()
   options.add_argument("disable-infobars")
   options.add_argument("start-maximized")
   options.add_argument("disable-dev-shm-usage")
   options.add_argument("no-sandbox")
-  options.add_experimental_option("excludeSwitches",["enable-automation"])
+  options.add_experimental_option("excludeSwitches", ["enable-automation"])
   options.add_argument("disable-blink-features=AutomationControlled")
+
   driver = webdriver.Chrome(options=options)
   driver.get("https://www.pythonanywhere.com/")
   return driver
 
-
 def main():
-  driver = get_driver()
-  element = driver.find_element(by="xpath",value = "/html/body/div[1]/div[2]/div/div/h1")
+  driver = get_drvier()
+  element = driver.find_element(by="xpath", value="/html/body/div[1]/div[2]/div/div/h1")
   return element.text
 
 print(main())
